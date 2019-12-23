@@ -48,7 +48,7 @@ if ($Gather) {
             Betreib              = $_.Company
         }
 
-    } | Select Benutzer, "Vollständiger Name", Nummer, Email, Beschreibung, Abteilung | Export-Csv $Station".csv" -Encoding UTF8
+    } | Select Benutzer, "Vollständiger Name", Nummer, Email, Beschreibung, Abteilung | Export-Csv $Station".csv" -Encoding Unicode
 }
 
 if($Export){
