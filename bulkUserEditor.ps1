@@ -36,7 +36,7 @@ if ($Gather) {
     # *This below changes the default Names as the Secerataries will edit these. Might as well make it easy to understand. 
     # *Plus I knew not doing this would result in problems later. 
     # *Note: This creates a new object from the ADUSER and this object is shoved into the CSV file. Feel free to go back to original. Remember though to update Export function too
-    # $Users.displayName
+
     $Users | foreach {
         new-object psobject -Property @{
             Benutzer             = $_.sAMAccountName
