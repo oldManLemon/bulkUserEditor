@@ -1,8 +1,6 @@
-
-#TODO RExport to CSV for editing. 
-#TODO Push edited CSV back so that updates to user details can be made
-
-
+#Bulk User Editor Script
+# Author: Andrew Hase
+# Company: Aviova
 param(
     # [Parameter(Mandatory = $true)]
     [string] $Station,
@@ -37,6 +35,7 @@ if ($Gather) {
     $Users = Get-ADUser -Filter * -SearchBase $searchbase -Properties samaccountname, displayName, telephoneNumber, mail, Description, Department, Company
     # *This below changes the default Names as the Secerataries will edit these. Might as well make it easy to understand. 
     # *Plus I knew not doing this would result in problems later. 
+    # *Note: This creates a new object from the ADUSER and this object is shoved into the CSV file. Feel free to go back to original. Remember though to update Export function too
     # $Users.displayName
     $Users | foreach {
         new-object psobject -Property @{
@@ -59,6 +58,4 @@ if($Export){
       $cUser =Get-ADUser -Identity $d.Benutzer -Properties telephoneNumber, mail, Description, Department, Company
       Set-ADUser -Identity $cUser -officephone $d.Nummer -Description $d.Beschreibung, -mail $d.Email, -Department $d.Abteilung, -Company -Betreib $d.Betreib, -DisplayName $d."Vollstaendiger Name"
     }
-    
-
 }
